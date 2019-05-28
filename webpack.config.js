@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/main.js',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].js',
+    path: path.resolve(process.cwd(), 'dist')
   },
   devtool: 'eval-source-map',
   devServer: {
@@ -33,8 +33,11 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"       
+        exclude: [
+          /node_modules/,
+          /spec/
+        ],
+        loader: "eslint-loader"     
       }
     ]
   }
